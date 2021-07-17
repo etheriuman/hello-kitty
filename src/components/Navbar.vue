@@ -5,7 +5,9 @@
     </div>
     <ul class="nav-items">
       <li class="nav-item">
+        <router-link to="/cats/upload">
           <button class="btn btn-outline-primary text-nowrap">上傳喵喵</button>
+        </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/cats/self">

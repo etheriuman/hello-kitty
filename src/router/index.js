@@ -32,6 +32,11 @@ const routes = [
     component: () => import('./../pages/LikesCats.vue')
   },
   {
+    name: 'upload-cats',
+    path: '/cats/upload',
+    component: () => import('./../pages/UploadCats.vue')
+  },
+  {
     name: 'not-found',
     path: '*',
     component: () => import('./../pages/NotFound.vue')
