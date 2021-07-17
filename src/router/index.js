@@ -17,9 +17,19 @@ const routes = [
     component: LogIn
   },
   {
-    name: 'home',
-    path: '/home',
-    component: () => import('./../pages/Home.vue')
+    name: 'cats',
+    path: '/cats',
+    component: () => import('./../pages/Cats.vue')
+  },
+  {
+    name: 'self-cats',
+    path: '/cats/self',
+    component: () => import('./../pages/SelfCats.vue')
+  },
+  {
+    name: 'likes-cats',
+    path: '/cats/likes',
+    component: () => import('./../pages/LikesCats.vue')
   },
   {
     name: 'not-found',

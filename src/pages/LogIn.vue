@@ -49,7 +49,7 @@ export default {
         title: `歡迎登入，${dummyUser.name}`
       })
       this.setSessionKey()
-      this.$router.push('/home')
+      this.$router.push('/cats')
     },
     checkLoginInput() {
       // 確認輸入是否完成
