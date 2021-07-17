@@ -7,11 +7,11 @@
       <form @submit.prevent="loginSubmited" class="login-form col-8 my-5">
         <div class="form-group mb-3">
           <label for="account">帳號</label>
-          <input v-model="account" type="text" class="form-control" id="account" aria-describedby="emailHelp" required>
+          <input v-model="account" type="text" class="form-control" id="account" aria-describedby="emailHelp">
         </div>
         <div class="form-group mb-3">
           <label for="password">密碼</label>
-          <input v-model="password" type="password" class="form-control" id="password" required>
+          <input v-model="password" type="password" class="form-control" id="password">
         </div>
         <button type="submit" class="btn btn-outline-primary">登入</button>
       </form>
@@ -20,7 +20,14 @@
 </template>
 
 <script>
-const dummyKey = '430e08ac-f8ba-429b-be6e-28202c71b252'
+import { Toast } from './../utils/helpers'
+
+const dummyUser = {
+  name: 'ArtzyMan',
+  account: 'artzycool',
+  password: '12344321',
+  key: '430e08ac-f8ba-429b-be6e-28202c71b252'
+}
 
 export default {
   name: 'login',
@@ -28,33 +35,57 @@ export default {
     return {
       account: '',
       password: '',
-      loginInputChecked: false
+      loginIsReady: false
     }
   },
   methods: {
     loginSubmited() {
       this.checkLoginInput()
-      if (!this.loginInputChecked) {
+      if (!this.loginIsReady) {
         return
       }
-      alert('歡迎登入')
+      Toast.fire({
+        icon: 'success',
+        title: `歡迎登入，${dummyUser.name}`
+      })
       this.setSessionKey()
       this.$router.push('/home')
     },
     checkLoginInput() {
+      // 確認輸入是否完成
       if (!this.account) {
-        alert('請輸入帳號')
+        Toast.fire({
+          icon: 'warning',
+          title: '請輸入帳號'
+        })
         return
       }
       if (!this.password) {
-        alert('請輸入密碼')
+        Toast.fire({
+          icon: 'warning',
+          title: '請輸入密碼'
+        })
         return
       }
-      console.log('login is checked')
-      this.loginInputChecked = true
+      // 確認假帳密是否相符
+      if (this.account !== dummyUser.account) {
+        Toast.fire({
+          icon: 'warning',
+          title: '請輸入正確帳號'
+        })
+        return
+      }
+      if (this.password !== dummyUser.password) {
+        Toast.fire({
+          icon: 'warning',
+          title: '密碼有誤'
+        })
+        return
+      }
+      this.loginIsReady = true
     },
     setSessionKey() {
-      sessionStorage.setItem('key', dummyKey)
+      sessionStorage.setItem('key', dummyUser.key)
     }
   }
 }
