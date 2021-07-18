@@ -47,7 +47,15 @@ const apis = {
   deleteFavourite(favouriteId) {
     return axiosInstance.delete(`/favourites/${favouriteId}`)
   },
-  getAllFavourites() {
+  getAllFavourites(page) {
+    if (page !== undefined) {
+      const queryParams = {
+        limit: PAGE_LIMIT,
+        order: IMAGE_ORDER,
+        page
+      }
+      return axiosInstance.get(`/favourites`, { params: queryParams })
+    }
     return axiosInstance.get(`/favourites`)
   }
 }

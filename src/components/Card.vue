@@ -1,11 +1,11 @@
 <template>
   <div class="card col-10 col-md-3">
-    <img :src="cat.url" alt="cute-cats">
-    <template v-if="isImageFavourited(cat.id)">
-      <div @click.prevent.stop="dislikeButtonOnClick(cat.id)" class="like-button">&#128148;</div>
+    <img :src="cat.url || cat.image.url" alt="cute-cats">
+    <template v-if="isImageFavourited(cat.image_id || cat.id)">
+      <div @click.prevent.stop="dislikeButtonOnClick(cat.image_id || cat.id)" class="like-button">&#128148;</div>
     </template>
     <template v-else>
-      <div @click.prevent.stop="likeButtonOnClick(cat.id)" class="like-button">&#128150;</div>
+      <div @click.prevent.stop="likeButtonOnClick(cat.image_id || cat.id)" class="like-button">&#128150;</div>
     </template>
   </div>
 </template>
