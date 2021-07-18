@@ -48,7 +48,7 @@ export default {
         icon: 'success',
         title: `歡迎登入，${dummyUser.name}`
       })
-      this.setSessionKey()
+      localStorage.setItem('key', dummyUser.key)
       this.$router.push('/cats')
     },
     checkLoginInput() {
@@ -83,9 +83,6 @@ export default {
         return
       }
       this.loginIsReady = true
-    },
-    setSessionKey() {
-      sessionStorage.setItem('key', dummyUser.key)
     }
   }
 }

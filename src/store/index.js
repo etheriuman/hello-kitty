@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    favourites: []
+    favourites: [],
   },
   mutations: {
     setFavourites(state, favourites) {
@@ -28,7 +28,5 @@ export default new Vuex.Store({
         console.log(error)
       }
     }
-  },
-  modules: {
   }
 })

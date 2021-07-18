@@ -52,21 +52,6 @@ export default {
         })
       }
     },
-    async getFavourites() {
-      try {
-        const response = await apis.getAllFavourites()
-        if (response.status !== 200) {
-          throw new Error()
-        }
-        this.$store.commit('setFavourites', response.data)
-      } catch(error) {
-        this.loginIsReady = false
-        Toast.fire({
-          icon: 'error',
-          title: '資料有誤'
-        })
-      }
-    },
     setCurrentPage(page) {
       this.currentPage = page
     }
@@ -77,7 +62,6 @@ export default {
     } 
   },
   created() {
-    this.getFavourites()
     this.getCatsWithPage(this.currentPage)
   }
 }

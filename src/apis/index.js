@@ -5,11 +5,19 @@ const PAGE_LIMIT = 9
 const IMAGE_ORDER = 'Desc'
 
 const axiosInstance = axios.create({
-  baseURL,
-  headers: {
-    'x-api-key': sessionStorage.getItem('key')
-  }
+  baseURL
 })
+
+axiosInstance.interceptors.request.use(
+  config => {
+    const key = localStorage.getItem('key')
+    if (key) {
+      config.headers['x-api-key'] = key
+    }
+    return config
+  },
+  err => Promise.reject(err)
+)
 
 const apis = {
   // ---------- images ----------

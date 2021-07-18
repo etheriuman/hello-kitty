@@ -17,6 +17,9 @@ export default {
       type: Array,
       required: true
     }
+  },
+  created() {
+    this.$store.dispatch('fetchFavourites')
   }
 }
 </script>

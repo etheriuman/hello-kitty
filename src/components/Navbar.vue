@@ -31,8 +31,8 @@ export default {
   name: 'navbar',
   methods: {
     logout() {
-      // clean session key
-      sessionStorage.removeItem('key')
+      // clean local key
+      localStorage.removeItem('key')
       this.$router.push('/login')
     }
   }
