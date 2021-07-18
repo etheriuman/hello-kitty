@@ -34,18 +34,14 @@ const apis = {
     return axiosInstance.post(`/images/upload`, formData, { headers: { 'Content-Type':'multipart/form-data' } })
   },
   // ---------- favourites ----------
-  addFavourite(imageId) {
-    return axiosInstance.post(`/favourites`, { imageId })
+  addFavourite(image_id) {
+    return axiosInstance.post(`/favourites`, { image_id })
   },
-  deleteFavourite(imageId) {
-    return axiosInstance.delete(`/favourites/${imageId}`)
+  deleteFavourite(favouriteId) {
+    return axiosInstance.delete(`/favourites/${favouriteId}`)
   },
-  getAllFavourites(page) {
-    const queryParams = {
-      limit: PAGE_LIMIT,
-      page
-    }
-    return axiosInstance.get(`/favourites`, { params: queryParams })
+  getAllFavourites() {
+    return axiosInstance.get(`/favourites`)
   }
 }
 

@@ -60,9 +60,8 @@ export default {
 }
 
 .logout {
-  padding: 5px 20px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 </style>

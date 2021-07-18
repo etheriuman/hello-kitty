@@ -1,16 +1,16 @@
 <template>
-  <div class="d-flex w-100 justify-content-center">
+  <div class="d-flex w-100 justify-content-center mb-5">
     <ul class="pagination w-100 d-flex justify-content-center">
-      <li v-if="paginationMaxCount > pageAmount" @click.stop="decreaseOffset" class="page-item" :class="['page-item', { disabled: !paginationOffset }]">
+      <li v-if="paginationMaxCount > pageAmount" @click.stop="decreaseOffset" class="page-item" :class="['page-item', { disabled: !paginationStart }]">
         <span class="page-link">&laquo;</span>
       </li>
       <li
-        @click.stop="paginationOnclick(index + paginationOffset)"
+        @click.stop="paginationOnclick(index + paginationStart)"
         v-for="index of pageAmount"
         :key="index"
-        :class="['page-item', {active: index + paginationOffset === currentPage + 1 } ]"
+        :class="['page-item', {active: index + paginationStart === currentPage + 1 } ]"
       >
-        <span class="page-link">{{ index + paginationOffset }}</span>
+        <span class="page-link">{{ index + paginationStart }}</span>
       </li>
       <li v-if="paginationMaxCount > pageAmount" @click.stop="increaseOffset" class="page-item">
         <span class="page-link">&raquo;</span>
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       pageAmount: 10,
-      paginationOffset: 0
+      paginationStart: 0
     }
   },
   methods: {
@@ -43,17 +43,19 @@ export default {
       this.$emit('onPginationChange', page - 1)
     },
     increaseOffset() {
-      const currentMaxPage = this.pageAmount + this.paginationOffset
+      const currentMaxPage = this.pageAmount + this.paginationStart
       if (currentMaxPage >= this.paginationMaxCount) {
         return
       }
-      this.paginationOffset += this.pageAmount
+      this.paginationStart += this.pageAmount
+      this.$emit('onPginationChange', this.paginationStart)
     },
     decreaseOffset() {
-      if (!this.paginationOffset) {
+      if (!this.paginationStart) {
         return
       }
-      this.paginationOffset -= this.pageAmount
+      this.paginationStart -= this.pageAmount
+      this.$emit('onPginationChange', this.paginationStart)
     }
   },
   watch: {
