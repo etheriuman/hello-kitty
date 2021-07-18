@@ -1,14 +1,13 @@
 import axios from 'axios'
 
 const baseURL = 'https://api.thecatapi.com/v1'
-const KEY = sessionStorage.getItem('key')
 const PAGE_LIMIT = 9
 const IMAGE_ORDER = 'Desc'
 
 const axiosInstance = axios.create({
   baseURL,
   headers: {
-    'x-api-key': KEY
+    'x-api-key': sessionStorage.getItem('key')
   }
 })
 
