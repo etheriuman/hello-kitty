@@ -146,7 +146,7 @@ export default {
         this.clearData()
         Toast.fire({
           icon: 'error',
-          title: '上傳失敗，請稍後再試'
+          title: '上傳失敗，不要發射奇怪的生物！'
         })
         console.log(error)
       }
