@@ -5,23 +5,28 @@
     </div>
     <ul class="nav-items">
       <li class="nav-item">
+        <router-link to="/cats">
+          <button class="btn btn-sm btn-outline-primary text-nowrap">全部喵喵</button>
+        </router-link>
+      </li>
+      <li class="nav-item">
         <router-link to="/cats/upload">
-          <button class="btn btn-outline-primary text-nowrap">上傳喵喵</button>
+          <button class="btn btn-sm btn-outline-primary text-nowrap">上傳喵喵</button>
         </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/cats/self">
-          <button class="btn btn-outline-primary text-nowrap">我的喵喵</button>
+          <button class="btn btn-sm btn-outline-primary text-nowrap">我的喵喵</button>
         </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/cats/likes">
-          <button class="btn btn-outline-primary text-nowrap">喵喵收藏</button>
+          <button class="btn btn-sm btn-outline-primary text-nowrap">喵喵收藏</button>
         </router-link>
       </li>
     </ul>
     <div class="logout">
-      <button @click.prevent.stop="logout" class="btn btn-danger text-nowrap">登出</button>
+      <button @click.prevent.stop="logout" class="btn btn-sm btn-danger text-nowrap">登出</button>
     </div>
   </div>
 </template>
@@ -49,14 +54,14 @@ export default {
 }
 
 .nav-items {
-  padding: 5px 0;
+  padding: .5rem 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
 .nav-item {
-  margin-right: 2rem;
+  margin-right: .5rem;
 }
 
 .logout {
