@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex w-100 justify-content-center mb-5">
     <ul class="pagination w-100 d-flex justify-content-center">
-      <li v-if="paginationMaxCount > pageAmount" @click.stop="decreaseOffset" class="page-item" :class="['page-item', { disabled: !paginationStart }]">
+      <li v-if="pageAmount >= 10" @click.stop="decreaseOffset" class="page-item" :class="['page-item', { disabled: !paginationStart }]">
         <span class="page-link">&laquo;</span>
       </li>
       <li
@@ -12,7 +12,7 @@
       >
         <span class="page-link">{{ index + paginationStart }}</span>
       </li>
-      <li v-if="paginationMaxCount > pageAmount" @click.stop="increaseOffset" class="page-item">
+      <li v-if="pageAmount >= 10" @click.stop="increaseOffset" class="page-item">
         <span class="page-link">&raquo;</span>
       </li>
     </ul>
@@ -34,8 +34,9 @@ export default {
   },
   data() {
     return {
-      pageAmount: 10,
-      paginationStart: 0
+      pageAmount: 0,
+      paginationStart: 0,
+      pageLimit: 9
     }
   },
   methods: {
@@ -60,7 +61,8 @@ export default {
   },
   watch: {
     paginationMaxCount(count) {
-      this.pageAmount = count > 10 ? 10 : count
+      // this.pageAmount = count > 10 ? 10 : count
+      this.pageAmount = Math.ceil(count / this.pageLimit) > 10 ? 10 : Math.ceil(count / this.pageLimit)
     }
   }
 }
