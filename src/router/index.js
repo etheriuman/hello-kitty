@@ -47,4 +47,18 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {{
+  console.log(to.name)
+  const key = localStorage.getItem('key')
+  const publicPages = ['log-in']
+  if (key && publicPages.includes(to.name)) {
+    localStorage.removeItem('key')
+  }
+  if (!key && !publicPages.includes(to.name)) {
+    next('/login')
+    return
+  }
+  next()
+}})
+
 export default router
