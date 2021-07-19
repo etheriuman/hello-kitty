@@ -30,15 +30,18 @@ const apis = {
     return axiosInstance.get(`/images/search`, { params: queryParams })
   },
   getUploadImages(page) {
-    const queryParams = {
-      limit: PAGE_LIMIT,
-      order: IMAGE_ORDER,
-      page
+    if (page !== undefined) {
+      const queryParams = {
+        limit: PAGE_LIMIT,
+        order: IMAGE_ORDER,
+        page
+      }
+      return axiosInstance.get(`/images`, { params: queryParams })
     }
-    return axiosInstance.get(`/images`, { params: queryParams })
+    return axiosInstance.get(`/images`)
   },
   uploadImage(formData) {
-    return axiosInstance.post(`/images/upload`, formData, { headers: { 'Content-Type':'multipart/form-data' } })
+    return axiosInstance.post(`/images/upload`, formData, {headers: { 'Content-Type': 'multipart/form-data' }})
   },
   // ---------- favourites ----------
   addFavourite(image_id) {
